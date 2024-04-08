@@ -403,6 +403,9 @@ require('lazy').setup {
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    opts = {
+      inlay_hints = { enabled = true},
+    },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
       'williamboman/mason.nvim',
@@ -497,6 +500,12 @@ require('lazy').setup {
           --  For example, in C this would take you to the header
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+          if vim.lsp.inlay_hint then
+            vim.keymap.set('n', '<leader>uh', function()
+              vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+            end, { desc = 'Toggle Inlay Hints' })
+          end
+
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -534,7 +543,20 @@ require('lazy').setup {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+        clangd = {
+
+          settings = {
+            cmd = { 'clangd',
+          '--offset_encoding=UTF-8',
+            },
+            inlay_hints = {
+              typeHints = true,
+              chainingHints = true,
+              parameterHints = true,
+            },
+
+          },
+        },
         -- gopls = {},
         pyright = {},
         -- rust_analyzer = {},
@@ -626,6 +648,26 @@ require('lazy').setup {
   --     },
   --   },
   -- },
+
+  { -- Copilot
+    'github/copilot.vim',
+    -- opts = {
+    --   notify_on_error = false,
+    --   format_on_save = {
+    --     timeout_ms = 500,
+    --     lsp_fallback = true,
+    --   },
+    --   formatters_by_ft = {
+    --     lua = { 'stylua' },
+    --     -- Conform can also run multiple formatters sequentially
+    --     -- python = { "isort", "black" },
+    --     --
+    --     -- You can use a sub-list to tell conform to run *until* a formatter
+    --     -- is found.
+    --     -- javascript = { { "prettierd", "prettier" } },
+    --   },
+    -- },
+  },
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
