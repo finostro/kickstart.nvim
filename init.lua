@@ -500,11 +500,13 @@ require('lazy').setup {
           --  For example, in C this would take you to the header
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+
           if vim.lsp.inlay_hint then
             vim.keymap.set('n', '<leader>uh', function()
               vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
             end, { desc = 'Toggle Inlay Hints' })
           end
+
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -512,6 +514,11 @@ require('lazy').setup {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+          if client and (client.name  == 'clangd') then
+            map('<leader>h', '<Cmd>ClangdSwitchSourceHeader<CR>', 'Switch [H]eader/Source')
+          end
+
           if client and client.server_capabilities.documentHighlightProvider then
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
