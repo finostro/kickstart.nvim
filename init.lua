@@ -817,6 +817,11 @@ require('lazy').setup {
     end,
   },
 
+  { -- view git diff , merge 
+
+    'sindrets/diffview.nvim'
+  },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
