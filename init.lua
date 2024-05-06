@@ -227,6 +227,13 @@ require('lazy').setup {
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  {
+  'stevearc/oil.nvim',
+  opts = {},
+  -- Optional dependencies
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+
   'ThePrimeagen/vim-be-good', -- Vim game to improve your skills
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -822,7 +829,10 @@ require('lazy').setup {
 
   { -- view git diff , merge 
 
-    'sindrets/diffview.nvim'
+    'sindrets/diffview.nvim',
+    vim.keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', { desc = 'Open [G]it [D]iff' }),
+    vim.keymap.set('n', '<leader>gD', '<cmd>DiffviewClose<CR>', { desc = 'Close [G]it [D]iff' })
+
   },
 
   { -- Highlight, edit, and navigate code
