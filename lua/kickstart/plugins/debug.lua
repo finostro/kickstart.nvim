@@ -11,6 +11,7 @@ return {
   'mfussenegger/nvim-dap',
   -- NOTE: And you can specify dependencies as well
   dependencies = {
+    'nvim-neotest/nvim-nio',
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
 
@@ -37,8 +38,11 @@ return {
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
+        'python',
+        'cpp',
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
       },
     }
 
@@ -82,6 +86,7 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
+    require('dap-go').setup()
     require('dap-go').setup()
   end,
 }
