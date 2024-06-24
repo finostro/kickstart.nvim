@@ -200,8 +200,8 @@ vim.keymap.set('x', '<leader>p', '\"_dP', { desc = 'Paste without loosing buffer
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], { desc = 'Yank to system clipboard' })
 vim.keymap.set("n", "<leader>Y", [["+Y]],{ desc = 'Yank to system clipboard' } )
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -260,6 +260,24 @@ require('lazy').setup {
 --    require('vim-fugitive').setup({}),
   },
 
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+
   -- lazy.nvim
 {
   "folke/noice.nvim",
@@ -301,11 +319,12 @@ require('lazy').setup {
     vim.keymap.set('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>', { desc = 'Toggle current line [G]it [B]lame' }),
     opts = {
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
+        add = { text = '┃' },
+        change = { text = '┃' },
         delete = { text = '_' },
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
+        untracked = { text = '┆' },
       },
     },
   },
