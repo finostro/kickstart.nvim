@@ -198,21 +198,20 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  See `:help vim.highlight.on_yank()`
 
 -- paste without loosing buffer
-vim.keymap.set('x', '<leader>p', '\"_dP', { desc = 'Paste without loosing buffer' })
+vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste without loosing buffer' })
 
--- yank to system clipboard 
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], { desc = 'Yank to system clipboard' })
-vim.keymap.set("n", "<leader>Y", [["+Y]],{ desc = 'Yank to system clipboard' } )
+-- yank to system clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Yank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Yank to system clipboard' })
 
-vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set('n', '<C-n>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-p>', '<cmd>cprev<CR>zz')
+vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
+vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 
 -- moving lines
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -250,54 +249,54 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   {
-  'stevearc/oil.nvim',
-  opts = {},
-  -- Optional dependencies
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" }),
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' }),
   },
 
   {
-  'tpope/vim-fugitive',
+    'tpope/vim-fugitive',
     vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<CR>', { desc = '[G]it [B]lame' }),
-  -- opts = {},
---    require('vim-fugitive').setup({}),
+    -- opts = {},
+    --    require('vim-fugitive').setup({}),
   },
 
   {
-    "christoomey/vim-tmux-navigator",
+    'christoomey/vim-tmux-navigator',
     cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
 
   -- lazy.nvim
-{
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  opts = {
-    -- add any options here
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      'MunifTanjim/nui.nvim',
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      'rcarriga/nvim-notify',
+    },
   },
-  dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "MunifTanjim/nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
-    "rcarriga/nvim-notify",
-    }
-},
 
   'ThePrimeagen/vim-be-good', -- Vim game to improve your skills
   -- NOTE: Plugins can also be added by using a table,
@@ -426,14 +425,14 @@ require('lazy').setup({
         --
         defaults = {
           -- mappings = {
-            -- i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          -- i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           -- },
           path_display = { 'truncate' },
         },
         pickers = {
           find_files = {
-            hidden= true,
-            file_ignore_patterns = { '.git/' , '.supermaven/' , '.cache/' },
+            hidden = true,
+            file_ignore_patterns = { '.git/', '.supermaven/', '.cache/' },
           },
         },
         extensions = {
@@ -488,7 +487,7 @@ require('lazy').setup({
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     opts = {
-      inlay_hints = { enabled = true},
+      inlay_hints = { enabled = true },
     },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -599,13 +598,11 @@ require('lazy').setup({
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-
           if vim.lsp.inlay_hint then
             vim.keymap.set('n', '<leader>uh', function()
               vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
             end, { desc = 'Toggle Inlay Hints' })
           end
-
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -614,7 +611,7 @@ require('lazy').setup({
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-          if client and (client.name  == 'clangd') then
+          if client and (client.name == 'clangd') then
             map('<leader>h', '<Cmd>ClangdSwitchSourceHeader<CR>', 'Switch [H]eader/Source')
           end
 
@@ -673,15 +670,12 @@ require('lazy').setup({
         clangd = {
 
           settings = {
-            cmd = { 'clangd',
-          '--offset_encoding=UTF-8',
-            },
+            cmd = { 'clangd', '--offset_encoding=UTF-8' },
             inlay_hints = {
               typeHints = true,
               chainingHints = true,
               parameterHints = true,
             },
-
           },
         },
         -- gopls = {},
@@ -780,12 +774,12 @@ require('lazy').setup({
       },
     },
   },
-    {
-      "supermaven-inc/supermaven-nvim",
-      config = function()
-        require("supermaven-nvim").setup({})
-      end,
-    },
+  {
+    'supermaven-inc/supermaven-nvim',
+    config = function()
+      require('supermaven-nvim').setup {}
+    end,
+  },
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -921,6 +915,8 @@ require('lazy').setup({
     end,
   },
 
+  { 'catppuccin/nvim', name = 'catppuccin' },
+
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -962,12 +958,11 @@ require('lazy').setup({
     end,
   },
 
-  { -- view git diff , merge 
+  { -- view git diff , merge
 
     'sindrets/diffview.nvim',
     vim.keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', { desc = 'Open [G]it [D]iff' }),
-    vim.keymap.set('n', '<leader>gD', '<cmd>DiffviewClose<CR>', { desc = 'Close [G]it [D]iff' })
-
+    vim.keymap.set('n', '<leader>gD', '<cmd>DiffviewClose<CR>', { desc = 'Close [G]it [D]iff' }),
   },
 
   { -- Highlight, edit, and navigate code
