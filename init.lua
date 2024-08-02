@@ -256,12 +256,26 @@ require('lazy').setup({
     vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' }),
   },
 
+--   {
+--   'tpope/vim-fugitive',
+--     vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<CR>', { desc = '[G]it [B]lame' }),
+--   -- opts = {},
+-- --    require('vim-fugitive').setup({}),
+--   },
+
   {
-    'tpope/vim-fugitive',
-    vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<CR>', { desc = '[G]it [B]lame' }),
-    -- opts = {},
-    --    require('vim-fugitive').setup({}),
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim", -- optional
+      -- "ibhagwan/fzf-lua",              -- optional
+    },
+    config = true
   },
+    
 
   {
     'christoomey/vim-tmux-navigator',
