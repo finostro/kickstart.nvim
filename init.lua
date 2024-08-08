@@ -256,26 +256,25 @@ require('lazy').setup({
     vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' }),
   },
 
---   {
---   'tpope/vim-fugitive',
---     vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<CR>', { desc = '[G]it [B]lame' }),
---   -- opts = {},
--- --    require('vim-fugitive').setup({}),
---   },
+  --   {
+  --   'tpope/vim-fugitive',
+  --     vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<CR>', { desc = '[G]it [B]lame' }),
+  --   -- opts = {},
+  -- --    require('vim-fugitive').setup({}),
+  --   },
 
   {
-    "NeogitOrg/neogit",
+    'NeogitOrg/neogit',
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
 
       -- Only one of these is needed, not both.
-      "nvim-telescope/telescope.nvim", -- optional
+      'nvim-telescope/telescope.nvim', -- optional
       -- "ibhagwan/fzf-lua",              -- optional
     },
-    config = true
+    config = true,
   },
-    
 
   {
     'christoomey/vim-tmux-navigator',
@@ -1021,7 +1020,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',

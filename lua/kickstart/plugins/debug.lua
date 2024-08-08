@@ -26,6 +26,9 @@ return {
   },
   keys = function(_, keys)
     local dap = require 'dap'
+    dap.listeners.before.event_initialized['split_window'] = function()
+      vim.cmd 'vs'
+    end
     local dapui = require 'dapui'
     return {
       -- Basic debugging keymaps, feel free to change to your liking!
@@ -98,6 +101,22 @@ return {
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    dap.configurations.cpp = {
+      {
+        name = 'Launch file',
+        type = 'codelldb',
+        request = 'launch',
+        args = function()
+          local args_str = vim.fn.input('Arguments: ', '', 'file')
+          return vim.split(args_str, ' ')
+        end,
+        program = function()
+          local path = vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          return (path and path ~= '') and path or dap.ABORT
+        end,
+      },
+    }
 
     -- Install golang specific config
     require('dap-go').setup {
