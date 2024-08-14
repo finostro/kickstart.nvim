@@ -256,6 +256,16 @@ require('lazy').setup({
     vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' }),
   },
 
+  {
+    'lervag/vimtex',
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = 'zathura'
+    end,
+  },
+
   --   {
   --   'tpope/vim-fugitive',
   --     vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<CR>', { desc = '[G]it [B]lame' }),
@@ -691,6 +701,9 @@ require('lazy').setup({
             },
           },
         },
+
+        texlab = {},
+
         -- gopls = {},
         pyright = {},
         -- rust_analyzer = {},
