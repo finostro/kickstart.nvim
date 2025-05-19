@@ -381,6 +381,7 @@ require('lazy').setup({
       -- Document existing key chains
       require('which-key').add {
         { '<leader>c', group = '[C]ode' },
+        { '<leader>g', group = '[G]it' },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -625,6 +626,8 @@ require('lazy').setup({
 
           map('<leader>cf', vim.lsp.buf.format, '[C]ode [F]ormat')
 
+          -- map('<leader>vws', vim.lsp.buf.workspace_symbol(), '[V]iew [W]orkspace [S]ymbol')
+
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -846,12 +849,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
       },
       'saadparwaiz1/cmp_luasnip',
@@ -964,6 +967,38 @@ require('lazy').setup({
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
+  -- debugprint
+  {
+    'andrewferrier/debugprint.nvim',
+
+    -- opts = { … },
+
+    dependencies = {
+      'echasnovski/mini.nvim', -- Optional: Needed for line highlighting (full mini.nvim plugin)
+      -- ... or ...
+      'echasnovski/mini.hipatterns', -- Optional: Needed for line highlighting ('fine-grained' hipatterns plugin)
+
+      'ibhagwan/fzf-lua', -- Optional: If you want to use the :SearchDebugPrints command with fzf-lua
+      'nvim-telescope/telescope.nvim', -- Optional: If you want to use the :SearchDebugPrints command with telescope.nvim
+      'folke/snacks.nvim', -- Optional: If you want to use the :SearchDebugPrints command with snacks.nvim
+    },
+
+    lazy = false, -- Required to make line highlighting work before debugprint is first used
+    version = '*', -- Remove if you DON'T want to use the stable version
+
+    opts = {
+      filetypes = {
+        ['cpp'] = {
+          left = 'RCLCPP_INFO_STREAM( get_logger(), "',
+          -- left_var = 'RCLCPP_INFO_STREAM( get_logger(), "',
+          right = '" );',
+          right_var = ' );',
+          mid_var = '"  << ',
+        },
+      },
+    },
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
