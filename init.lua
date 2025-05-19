@@ -284,6 +284,8 @@ require('lazy').setup({
       -- "ibhagwan/fzf-lua",              -- optional
     },
     config = true,
+    graph_style = 'kitty',
+    vim.keymap.set('n', '<leader>gg', '<CMD>Neogit cwd=%:p:h<CR>', { desc = '[G]it  Neo[G]it menu' }),
   },
 
   {
