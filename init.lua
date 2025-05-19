@@ -966,6 +966,38 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
+  -- debugprint
+  {
+    'andrewferrier/debugprint.nvim',
+
+    -- opts = { … },
+
+    dependencies = {
+      'echasnovski/mini.nvim', -- Optional: Needed for line highlighting (full mini.nvim plugin)
+      -- ... or ...
+      'echasnovski/mini.hipatterns', -- Optional: Needed for line highlighting ('fine-grained' hipatterns plugin)
+
+      'ibhagwan/fzf-lua', -- Optional: If you want to use the :SearchDebugPrints command with fzf-lua
+      'nvim-telescope/telescope.nvim', -- Optional: If you want to use the :SearchDebugPrints command with telescope.nvim
+      'folke/snacks.nvim', -- Optional: If you want to use the :SearchDebugPrints command with snacks.nvim
+    },
+
+    lazy = false, -- Required to make line highlighting work before debugprint is first used
+    version = '*', -- Remove if you DON'T want to use the stable version
+
+    opts = {
+      filetypes = {
+        ['cpp'] = {
+          left = 'RCLCPP_INFO_STREAM( get_logger(), "',
+          -- left_var = 'RCLCPP_INFO_STREAM( get_logger(), "',
+          right = '" );',
+          right_var = ' );',
+          mid_var = '"  << ',
+        },
+      },
+    },
+  },
+
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
