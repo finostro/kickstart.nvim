@@ -688,6 +688,13 @@ require('lazy').setup({
 
         -- gopls = {},
         pyright = {},
+        ltex_plus = {
+
+          settings = {
+            language = 'en-US',
+            enabled = { 'latex', 'tex', 'markdown', 'bibtex', 'smd' },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
